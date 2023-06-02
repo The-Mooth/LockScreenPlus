@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import { View, Text, StyleSheet, Animated, Pressable } from "react-native";
-import axios from "axios";
-import moment from "moment";
+import { View, Text, StyleSheet, Animated, Pressable, SafeAreaView } from "react-native";
+import { StatusBar } from "expo-status-bar";
 
 import fetchCurrentTime from "../apiCalls/Time";
 import fetchCurrentLocation from "../apiCalls/Location";
@@ -46,10 +45,14 @@ const ClockScreen = () => {
   
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <StatusBar hidden />
+      <View style={styles.topRow}>
+      {quote ? <Text style={styles.text}>quote works</Text> : null}
+      </View>
       {time ? <Text style={styles.text}>time works</Text> : null}
       {location ? <Text style={styles.text}>location works</Text> : null}
-      {quote ? <Text style={styles.text}>quote works</Text> : null}
+      
     
       <Animated.View
         style={{
@@ -68,11 +71,19 @@ const ClockScreen = () => {
       </Pressable>
         <Text style={styles.text}>Tab</Text>
       </Animated.View>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+
+  topRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+    width: "100%",
+  },
+
   container: {
     flex: 1,
     justifyContent: "space-between",

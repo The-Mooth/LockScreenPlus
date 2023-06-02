@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { View, Text, StyleSheet, Animated, Pressable, SafeAreaView } from "react-native";
+import { View, Text, StyleSheet, Animated, Pressable, SafeAreaView, ImageBackground } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
 import fetchCurrentTime from "../apiCalls/Time";
@@ -47,8 +47,18 @@ const ClockScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar hidden />
+      <ImageBackground
+        source={
+          isDay
+            ? require("../../assets/bg-image-daytime.jpg")
+            : require("../../assets/bg-image-nighttime.jpg")
+        }
+        style={styles.img}
+      >
+      <View style={styles.imgCover}>
       <View style={styles.topRow}>
-      {quote ? <Text style={styles.text}>quote works</Text> : null}
+      {quote ? <Text style={styles.text}>quote bussin</Text> : null}
+      
       </View>
       {time ? <Text style={styles.text}>time works</Text> : null}
       {location ? <Text style={styles.text}>location works</Text> : null}
@@ -71,11 +81,30 @@ const ClockScreen = () => {
       </Pressable>
         <Text style={styles.text}>Tab</Text>
       </Animated.View>
+      </View>
+      </ImageBackground>
+      
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+
+  imgCover: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(0,0,0,0.2)",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+
+  img: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
+  },
 
   topRow: {
     flexDirection: "row",
@@ -92,6 +121,8 @@ const styles = StyleSheet.create({
 
   text: {
     fontSize: 24,
+    color: "white",
+    fontWeight: "bold",
   },
 });
 

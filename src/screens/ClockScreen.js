@@ -4,28 +4,28 @@ import axios from 'axios';
 import moment from 'moment';
 
 import fetchCurrentTime from '../apiCalls/Time';
+import fetchCurrentLocation from '../apiCalls/Location';
 
 const ClockScreen = () => {
   //api usestates
-  const [currentTime, setTime] = useState(null);
+  const [time, setTime] = useState(null);
   const [location, setLocation] = useState(null);
 
 
   useEffect(() => {
-   
-
     fetchCurrentTime(setTime);
   }, []);
 
 
   useEffect(() => {
+    fetchCurrentLocation(time, setLocation);
   }, []);
 
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{currentTime}</Text>
-      <Text style={styles.text}>{location}</Text>
+      {time ? <Text style={styles.text}>time works</Text> : null}
+      {location ? <Text style={styles.text}>location works</Text> : null}
     </View>
   );
 };

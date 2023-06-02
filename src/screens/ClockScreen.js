@@ -7,6 +7,8 @@ import fetchCurrentTime from "../apiCalls/Time";
 import fetchCurrentLocation from "../apiCalls/Location";
 import fetchCurrentQuote from "../apiCalls/Quotes";
 
+import parseTime from "../hooks/ParseTime";
+
 const ClockScreen = () => {
   //api usestates
   const [time, setTime] = useState(null);
@@ -15,6 +17,10 @@ const ClockScreen = () => {
 
   //other usestates
   const [showTab, setShowTab] = useState(false);
+  const [isDay, setIsDay] = useState(false);
+  const [greeting, setGreeting] = useState("");
+
+
   const slideAnim = useRef(new Animated.Value(0)).current;
 
   const handleTabPress = () => {
@@ -26,6 +32,7 @@ const ClockScreen = () => {
     }).start();
   };
 
+  //api useeffects
   useEffect(() => {
     fetchCurrentTime(setTime);
     fetchCurrentQuote(setQuote);
@@ -33,7 +40,10 @@ const ClockScreen = () => {
 
   useEffect(() => {
     fetchCurrentLocation(time, setLocation);
+    parseTime(time, setGreeting, setIsDay);
   }, [time]);
+
+  
 
   return (
     <View style={styles.container}>

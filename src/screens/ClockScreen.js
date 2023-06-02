@@ -14,7 +14,7 @@ const ClockScreen = () => {
   useEffect(() => {
    
 
-    fetchCurrentTime(setTime, setLocation);
+    fetchCurrentTime(setTime);
   }, []);
 
 

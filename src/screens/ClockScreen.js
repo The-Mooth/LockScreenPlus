@@ -7,8 +7,9 @@ import fetchCurrentTime from "../apiCalls/Time";
 import fetchCurrentLocation from "../apiCalls/Location";
 import fetchCurrentQuote from "../apiCalls/Quotes";
 
-//hooks
-import parseTime from "../hooks/ParseTime";
+//utils
+import parseTime from "../util/ParseTime";
+import {MyText, MyTextBold} from "../util/MyText";
 
 //components
 import BottomScreen from "../components/BottomScreen";
@@ -62,7 +63,7 @@ const ClockScreen = () => {
       >
       <View style={styles.imgCover}>
       <View style={styles.topRow}>
-      {quote ? <Text style={styles.text}>quote bussin</Text> : null}
+      {quote ? <MyTextBold>quote bussin</MyTextBold> : null}
 
       </View>
       

@@ -2,11 +2,16 @@ import React, { useEffect, useState, useRef } from "react";
 import { View, Text, StyleSheet, Animated, Pressable, SafeAreaView, ImageBackground } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
+//api calls
 import fetchCurrentTime from "../apiCalls/Time";
 import fetchCurrentLocation from "../apiCalls/Location";
 import fetchCurrentQuote from "../apiCalls/Quotes";
 
+//hooks
 import parseTime from "../hooks/ParseTime";
+
+//components
+import BottomScreen from "../components/BottomScreen";
 
 const ClockScreen = () => {
   //api usestates
@@ -58,29 +63,10 @@ const ClockScreen = () => {
       <View style={styles.imgCover}>
       <View style={styles.topRow}>
       {quote ? <Text style={styles.text}>quote bussin</Text> : null}
-      
+
       </View>
-      {time ? <Text style={styles.text}>time works</Text> : null}
-      {location ? <Text style={styles.text}>location works</Text> : null}
       
-    
-      <Animated.View
-        style={{
-          transform: [
-            {
-              translateY: slideAnim.interpolate({
-                inputRange: [0, 1],
-                outputRange: [20, -100],
-              }),
-            },
-          ],
-        }}
-      >
-        <Pressable onPress={handleTabPress}>
-        <Text style={styles.text}>Press me</Text>
-      </Pressable>
-        <Text style={styles.text}>Tab</Text>
-      </Animated.View>
+      <BottomScreen time={time} location={location} isDay={isDay} />
       </View>
       </ImageBackground>
       

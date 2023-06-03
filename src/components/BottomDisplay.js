@@ -11,6 +11,7 @@ import Moon from "../components/svgs/Moon";
 import Sun from "../components/svgs/Sun";
 
 const BottomDisplay = ({ time, location, isDay, greeting }) => {
+  
   //wait for api calls to finish
   if (!time || !location) {
     return null;
@@ -100,7 +101,10 @@ const BottomDisplay = ({ time, location, isDay, greeting }) => {
       </View>
 
       <View style={[styles.slider, {backgroundColor: slideBackgroundColor}]}>
+        <View style={styles.sliderRow}>
       <MyText style={[styles.slideText, {color: slideTextColor}]}>poggers</MyText>
+      <MyTextBold style={[styles.slideTextBold, {color: slideTextColor}]}>poggers</MyTextBold>
+      </View>
       </View>
     </Animated.View>
   );
@@ -108,12 +112,23 @@ const BottomDisplay = ({ time, location, isDay, greeting }) => {
 
 const styles = StyleSheet.create({
 
-  
+  slideTextBold: {
+  },
+
+  slideText: {
+  },
+
+  sliderRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
 
   slider: {
     Width: "100%",
     height: 600,
     backgroundColor: "rgba(255,255,255,0.5)",
+    padding: 20,
   },
 
   column: {

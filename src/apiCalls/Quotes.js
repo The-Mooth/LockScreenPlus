@@ -16,7 +16,7 @@ const fetchCurrentQuote = async (setQuote) => {
       setQuote(JSON.stringify(data));
       //setLocation(location);
     } catch (error) {
-      console.log('Error fetching current Quote:', error);
+      //console.log('Error fetching current Quote:', error);
     }
     };
 

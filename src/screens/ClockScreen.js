@@ -53,16 +53,21 @@ const ClockScreen = () => {
     const interval = setInterval(() => {
       fetchCurrentTime(setTime);
     }, 60000);
+
+    cleanupFunction = () => {
+      clearInterval(interval);
+    };
+    
+    return cleanupFunction;
   }, []);
 
   useEffect(() => {
     fetchCurrentLocation(time, setLocation);
     parseTime(time, setGreeting, setIsDay);
-    console.log("isDay: " + isDay);
   }, [time]);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView testID="mainView" style={styles.container}>
       <StatusBar hidden />
       <ImageBackground
         source={
@@ -75,7 +80,7 @@ const ClockScreen = () => {
         <View style={styles.imgCover}>
           <TopDisplay quote={quote} handleRefresh={handleRefresh} />
 
-          <BottomDisplay
+          <BottomDisplay testID="bottomDisplay"
             time={time}
             location={location}
             isDay={isDay}

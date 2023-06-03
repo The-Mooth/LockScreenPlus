@@ -9,10 +9,10 @@ const fetchCurrentLocation = async (time, setLocation) => {
     );
     const locationData = locationResponse.data;
     //const location = `${locationData.city}, ${locationData.regionName}, ${locationData.country}`;
-    console.log(locationData);
+  
     setLocation(JSON.stringify(locationData));
   } catch (error) {
-    console.log("Error fetching current location:", error);
+    //console.log("Error fetching current location:", error);
   }
 };
 

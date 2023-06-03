@@ -8,7 +8,6 @@ const fetchCurrentTime = async (setTime) => {
       const response = await axios.get('http://worldtimeapi.org/api/ip');
       const data = response.data;
       const currentTime = moment(data.datetime).format('YYYY-MM-DD HH:mm:ss');
-        console.log(currentTime);
       /*
       const locationResponse = await axios.get(`http://ip-api.com/json/${data.client_ip}`);
       const locationData = locationResponse.data;
@@ -17,7 +16,7 @@ const fetchCurrentTime = async (setTime) => {
       setTime(JSON.stringify(data));
       //setLocation(location);
     } catch (error) {
-      console.log('Error fetching current time:', error);
+      //console.log('Error fetching current time:', error);
     }
     };
 

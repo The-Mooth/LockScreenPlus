@@ -14,7 +14,7 @@ const TopDisplay = ({ quote, handleRefresh }) => {
         <MyText style={styles.adfasdfsdfs}>{data.content}</MyText>
         <MyTextBold style={styles.author}>{data.author}</MyTextBold>
       </View>
-      <Pressable onPress={handleRefresh}>
+      <Pressable testID="refreshButton" onPress={handleRefresh}>
         <Refresh style={styles.refresh} />
       </Pressable>
     </View>

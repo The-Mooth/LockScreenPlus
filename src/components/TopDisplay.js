@@ -3,9 +3,7 @@ import { View, StyleSheet, Pressable } from "react-native";
 import { MyText, MyTextBold } from "../util/MyText";
 import Refresh from "../components/svgs/Refresh";
 
-
-
-const TopDisplay = ({ quote, handleRefresh}) => {
+const TopDisplay = ({ quote, handleRefresh }) => {
   if (quote === null) return null;
 
   const data = JSON.parse(quote);

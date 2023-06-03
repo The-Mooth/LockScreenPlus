@@ -73,7 +73,7 @@ const BottomDisplay = ({ time, location, isDay, greeting }) => {
             {
               translateY: slideAnim.interpolate({
                 inputRange: [0, 1],
-                outputRange: [40, -140],
+                outputRange: [50, -140],
               }),
             },
           ],
@@ -82,7 +82,7 @@ const BottomDisplay = ({ time, location, isDay, greeting }) => {
     >
       <View style={styles.row}>
         {isDay ? <Sun /> : <Moon />}
-        <MyText>{greeting + ", it's currently"}</MyText>
+        <MyText style={{marginLeft: 10}}>{greeting + ", it's currently"}</MyText>
       </View>
 
       <View style={[styles.row, { alignItems: "flex-end" }]}>
@@ -187,6 +187,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     width: "28%",
     marginBottom: 20,
+    marginTop: 20,
   },
 
   row: {
@@ -200,7 +201,7 @@ const styles = StyleSheet.create({
   container: {
     //flex: 1,
     width: "100%",
-    height: "35%",
+    height: "40%",
     justifyContent: "space-between",
     //paddingHorizontal: 15,
     //alignItems: "center",

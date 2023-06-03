@@ -1,5 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
-import { View, StyleSheet, Animated, Pressable, SafeAreaView, ImageBackground } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Animated,
+  Pressable,
+  SafeAreaView,
+  ImageBackground,
+} from "react-native";
 import { StatusBar } from "expo-status-bar";
 
 //api calls
@@ -9,7 +16,7 @@ import fetchCurrentQuote from "../apiCalls/Quotes";
 
 //utils
 import parseTime from "../util/ParseTime";
-import {MyText, MyTextBold} from "../util/MyText";
+import { MyText, MyTextBold } from "../util/MyText";
 
 //components
 import BottomDisplay from "../components/BottomDisplay";
@@ -38,7 +45,6 @@ const ClockScreen = () => {
     fetchCurrentQuote(setQuote);
   };
 
-
   //api useeffects
   useEffect(() => {
     fetchCurrentTime(setTime);
@@ -52,10 +58,8 @@ const ClockScreen = () => {
   useEffect(() => {
     fetchCurrentLocation(time, setLocation);
     parseTime(time, setGreeting, setIsDay);
-    console.log("isDay: " + isDay)
+    console.log("isDay: " + isDay);
   }, [time]);
-
-  
 
   return (
     <SafeAreaView style={styles.container}>
@@ -68,19 +72,22 @@ const ClockScreen = () => {
         }
         style={styles.img}
       >
-      <View style={styles.imgCover}>
-      <TopDisplay quote={quote} handleRefresh={handleRefresh}/>
-      
-      <BottomDisplay time={time} location={location} isDay={isDay} greeting={greeting} />
-      </View>
+        <View style={styles.imgCover}>
+          <TopDisplay quote={quote} handleRefresh={handleRefresh} />
+
+          <BottomDisplay
+            time={time}
+            location={location}
+            isDay={isDay}
+            greeting={greeting}
+          />
+        </View>
       </ImageBackground>
-      
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-
   moon: {
     margin: 10,
   },
@@ -89,7 +96,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     height: "100%",
-    backgroundColor: "rgba(0,0,0,0.2)",
+    backgroundColor: "rgba(0,0,0,0.25)",
     justifyContent: "space-between",
     alignItems: "center",
   },

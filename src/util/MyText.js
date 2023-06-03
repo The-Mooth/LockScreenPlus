@@ -8,6 +8,7 @@ const MyText = ({ style, ...rest }) => {
         {
           color: "hsl(0, 0%, 100%)",
           fontSize: 16,
+          fontWeight: 500,
           maxWidth: "99%",
         },
         style,

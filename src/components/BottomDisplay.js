@@ -82,7 +82,7 @@ const BottomDisplay = ({ time, location, isDay, greeting }) => {
     >
       <View style={styles.row}>
         {isDay ? <Sun /> : <Moon />}
-        <MyText>{greeting + ", IT'S CURRENTLY"}</MyText>
+        <MyText>{greeting + ", it's currently"}</MyText>
       </View>
 
       <View style={[styles.row, { alignItems: "flex-end" }]}>

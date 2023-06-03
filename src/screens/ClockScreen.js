@@ -43,6 +43,10 @@ const ClockScreen = () => {
   useEffect(() => {
     fetchCurrentTime(setTime);
     fetchCurrentQuote(setQuote);
+
+    const interval = setInterval(() => {
+      fetchCurrentTime(setTime);
+    }, 60000);
   }, []);
 
   useEffect(() => {

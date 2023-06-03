@@ -28,6 +28,8 @@ const styles = StyleSheet.create({
     width: "80%",
   },
   row: {
+    paddingTop: 20,
+    paddingHorizontal: 15,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-start",

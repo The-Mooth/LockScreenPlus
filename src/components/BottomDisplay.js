@@ -43,10 +43,11 @@ const BottomDisplay = ({ time, location, isDay, greeting }) => {
 
   //logic for slider colors
   let slideTextColor = "hsl(0, 0%, 15%)";
-  let slideBackgroundColor = "rgba(255,255,255,0.5)";
-  if (isDay) {
+  let slideBackgroundColor = "rgba(255,255,255,0.7)";
+
+  if (!isDay) {
     slideTextColor = "hsl(0, 0%, 80%)";
-    slideBackgroundColor = "rgba(0,0,0,0.5)";
+    slideBackgroundColor = "rgba(0,0,0,0.7)";
   }
 
   //logic for slider

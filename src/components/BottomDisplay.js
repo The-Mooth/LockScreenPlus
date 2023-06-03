@@ -20,6 +20,7 @@ const BottomDisplay = ({ time, location, isDay, greeting }) => {
   const timeData = JSON.parse(time);
   const locationData = JSON.parse(location);
 
+  //logic to show time
   const now = new Date(timeData.datetime);
   let hours = now.getHours();
   let minutes = now.getMinutes();
@@ -40,6 +41,15 @@ const BottomDisplay = ({ time, location, isDay, greeting }) => {
     hours = "0" + hours;
   }
 
+  //logic for slider colors
+  let slideTextColor = "hsl(0, 0%, 25%)";
+  let slideBackgroundColor = "rgba(255,255,255,0.5)";
+  if (!isDay) {
+    slideTextColor = "hsl(0, 0%, 80%)";
+    slideBackgroundColor = "rgba(0,0,0,0.5)";
+  }
+
+
   //logic for slider
   const [showTab, setShowTab] = useState(false);
 
@@ -55,7 +65,14 @@ const BottomDisplay = ({ time, location, isDay, greeting }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <Animated.View style={[styles.container, {transform: [
+      {
+        translateY: slideAnim.interpolate({
+          inputRange: [0, 1],
+          outputRange: [20, -100],
+        }),
+      },
+    ],}]}>
 
       <View style={styles.row}>
         {isDay ? <Sun /> : <Moon />}
@@ -81,11 +98,23 @@ const BottomDisplay = ({ time, location, isDay, greeting }) => {
         {showTab ? <ArrowDown/> : <ArrowUp/>}
       </Pressable>
       </View>
-    </View>
+
+      <View style={[styles.slider, {backgroundColor: slideBackgroundColor}]}>
+      <MyText style={[styles.slideText, {color: slideTextColor}]}>poggers</MyText>
+      </View>
+    </Animated.View>
   );
 };
 
 const styles = StyleSheet.create({
+
+  
+
+  slider: {
+    Width: "100%",
+    height: 600,
+    backgroundColor: "rgba(255,255,255,0.5)",
+  },
 
   column: {
     flexDirection: "column",
@@ -104,7 +133,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     paddingVertical: 5,
-    width: "30%",
+    width: "28%",
     marginBottom: 20,
   },
 
@@ -113,6 +142,7 @@ const styles = StyleSheet.create({
     //justifyContent: "flex-start",
     //alignItems: "flex-start",
     width: "100%",
+    marginLeft: 15,
   },
 
   container: {
@@ -120,7 +150,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "35%",
     justifyContent: "space-between",
-    paddingHorizontal: 15,
+    //paddingHorizontal: 15,
     //alignItems: "center",
   },
 

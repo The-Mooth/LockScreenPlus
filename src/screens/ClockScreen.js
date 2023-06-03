@@ -14,6 +14,7 @@ import {MyText, MyTextBold} from "../util/MyText";
 //components
 import BottomScreen from "../components/BottomScreen";
 import ArrowUp from "../components/svgs/ArrowUp";
+import ArrowDown from "../components/svgs/ArrowDown";
 
 const ClockScreen = () => {
   //api usestates
@@ -66,6 +67,7 @@ const ClockScreen = () => {
       <View style={styles.topRow}>
       {quote ? <MyTextBold>quote bussin</MyTextBold> : null}
       <ArrowUp/>
+      <ArrowDown/>
 
       </View>
       

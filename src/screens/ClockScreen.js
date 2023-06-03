@@ -29,7 +29,7 @@ const ClockScreen = () => {
 
   //other usestates
   const [showTab, setShowTab] = useState(false);
-  const [isDay, setIsDay] = useState(false);
+  const [isDay, setIsDay] = useState(true);
   const [greeting, setGreeting] = useState("");
 
   //function to handle refresh button

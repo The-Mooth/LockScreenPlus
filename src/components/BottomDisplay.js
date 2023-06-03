@@ -2,8 +2,20 @@ import {View, StyleSheet, Text, Animated, Pressable,} from "react-native";
 import React, { useState, useEffect, useRef } from "react";
 
 
-const BottomDisplay = (time, location, isDay) => {
+const BottomDisplay = ({time, location, isDay}) => {
+
+
+  //wait for api calls to finish 
+  if (!time || !location) {
+    return null;
+  }
+
+
+  const timeData = JSON.parse(time);
+  const locationData = JSON.parse(location);
+
   const [showTab, setShowTab] = useState(false);
+
 
   const slideAnim = useRef(new Animated.Value(0)).current;
 

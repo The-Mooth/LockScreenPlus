@@ -67,7 +67,7 @@ const ClockScreen = () => {
       <View style={styles.imgCover}>
       <TopDisplay quote={quote} handleRefresh={handleRefresh}/>
       
-      <BottomDisplay time={time} location={location} isDay={isDay} />
+      <BottomDisplay time={time} location={location} isDay={isDay} greeting={greeting} />
       </View>
       </ImageBackground>
       

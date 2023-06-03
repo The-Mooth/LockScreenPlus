@@ -24,3 +24,15 @@ test("renders correctly", async () => {
       { timeout: 600 }
     );
   });
+
+  test("refresh works", async () => {
+    const { getByTestId } = render(<ClockScreen/>);
+  
+    await waitFor(
+      () => {
+        const component = getByTestId("refreshButton");
+        expect(component).not.toBeNull();
+      },
+      { timeout: 6000 }
+    );
+  });

@@ -1,9 +1,11 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Pressable } from "react-native";
 
 import { MyText, MyTextBold } from "../util/MyText";
 import Refresh from "../components/svgs/Refresh";
 
-const TopDisplay = ({ quote }) => {
+
+
+const TopDisplay = ({ quote, handleRefresh}) => {
   if (quote === null) return null;
 
   const data = JSON.parse(quote);
@@ -14,12 +16,17 @@ const TopDisplay = ({ quote }) => {
         <MyText style={styles.adfasdfsdfs}>{data.content}</MyText>
         <MyTextBold style={styles.author}>{data.author}</MyTextBold>
       </View>
-      <Refresh style={styles.refresh} />
+      <Pressable onPress={handleRefresh}>
+        <Refresh style={styles.refresh} />
+      </Pressable>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  quote: {
+    width: "80%",
+  },
   row: {
     flexDirection: "row",
     justifyContent: "space-between",

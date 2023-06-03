@@ -32,6 +32,12 @@ const ClockScreen = () => {
   const [isDay, setIsDay] = useState(false);
   const [greeting, setGreeting] = useState("");
 
+  //function to handle refresh button
+  const handleRefresh = () => {
+    fetchCurrentTime(setTime);
+    fetchCurrentQuote(setQuote);
+  };
+
 
   //api useeffects
   useEffect(() => {
@@ -59,7 +65,7 @@ const ClockScreen = () => {
         style={styles.img}
       >
       <View style={styles.imgCover}>
-      <TopDisplay quote={quote}/>
+      <TopDisplay quote={quote} handleRefresh={handleRefresh}/>
       
       <BottomDisplay time={time} location={location} isDay={isDay} />
       </View>

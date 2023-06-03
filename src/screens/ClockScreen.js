@@ -65,6 +65,7 @@ const ClockScreen = () => {
     <SafeAreaView style={styles.container}>
       <StatusBar hidden />
       <ImageBackground
+      testID="bottomDisplay"
         source={
           isDay
             ? require("../../assets/bg-image-daytime.jpg")
@@ -75,7 +76,7 @@ const ClockScreen = () => {
         <View testID="mainView" style={styles.imgCover}>
           <TopDisplay quote={quote} handleRefresh={handleRefresh} />
 
-          <BottomDisplay testID="bottomDisplay"
+          <BottomDisplay
             time={time}
             location={location}
             isDay={isDay}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { View, Text, StyleSheet, Animated, Pressable, SafeAreaView, ImageBackground } from "react-native";
+import { View, StyleSheet, Animated, Pressable, SafeAreaView, ImageBackground } from "react-native";
 import { StatusBar } from "expo-status-bar";
 
 //api calls
@@ -13,6 +13,7 @@ import {MyText, MyTextBold} from "../util/MyText";
 
 //components
 import BottomScreen from "../components/BottomScreen";
+import ArrowUp from "../components/svgs/ArrowUp";
 
 const ClockScreen = () => {
   //api usestates
@@ -64,6 +65,7 @@ const ClockScreen = () => {
       <View style={styles.imgCover}>
       <View style={styles.topRow}>
       {quote ? <MyTextBold>quote bussin</MyTextBold> : null}
+      <ArrowUp/>
 
       </View>
       

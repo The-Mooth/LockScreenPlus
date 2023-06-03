@@ -54,11 +54,6 @@ const ClockScreen = () => {
       fetchCurrentTime(setTime);
     }, 60000);
 
-    cleanupFunction = () => {
-      clearInterval(interval);
-    };
-    
-    return cleanupFunction;
   }, []);
 
   useEffect(() => {
@@ -67,7 +62,7 @@ const ClockScreen = () => {
   }, [time]);
 
   return (
-    <SafeAreaView testID="mainView" style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <StatusBar hidden />
       <ImageBackground
         source={
@@ -77,7 +72,7 @@ const ClockScreen = () => {
         }
         style={styles.img}
       >
-        <View style={styles.imgCover}>
+        <View testID="mainView" style={styles.imgCover}>
           <TopDisplay quote={quote} handleRefresh={handleRefresh} />
 
           <BottomDisplay testID="bottomDisplay"

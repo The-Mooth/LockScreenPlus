@@ -52,3 +52,6 @@ When you finish, please do the following:
 3. capture how your app looks locally in the simulated app on your machine
 4. put the captured image in the design folder
 5. edit this README file to display your captured image here in this README file (see the above displayed expected design as an example)
+
+
+![design](./design/finished-product.png)

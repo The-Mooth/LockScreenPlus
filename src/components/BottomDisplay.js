@@ -11,7 +11,6 @@ import Moon from "../components/svgs/Moon";
 import Sun from "../components/svgs/Sun";
 
 const BottomDisplay = ({ time, location, isDay, greeting }) => {
-  
   //wait for api calls to finish
   if (!time || !location) {
     return null;
@@ -43,13 +42,12 @@ const BottomDisplay = ({ time, location, isDay, greeting }) => {
   }
 
   //logic for slider colors
-  let slideTextColor = "hsl(0, 0%, 25%)";
+  let slideTextColor = "hsl(0, 0%, 15%)";
   let slideBackgroundColor = "rgba(255,255,255,0.5)";
-  if (!isDay) {
+  if (isDay) {
     slideTextColor = "hsl(0, 0%, 80%)";
     slideBackgroundColor = "rgba(0,0,0,0.5)";
   }
-
 
   //logic for slider
   const [showTab, setShowTab] = useState(false);
@@ -66,22 +64,30 @@ const BottomDisplay = ({ time, location, isDay, greeting }) => {
   };
 
   return (
-    <Animated.View style={[styles.container, {transform: [
-      {
-        translateY: slideAnim.interpolate({
-          inputRange: [0, 1],
-          outputRange: [20, -100],
-        }),
-      },
-    ],}]}>
-
+    <Animated.View
+      style={[
+        styles.container,
+        {
+          transform: [
+            {
+              translateY: slideAnim.interpolate({
+                inputRange: [0, 1],
+                outputRange: [40, -140],
+              }),
+            },
+          ],
+        },
+      ]}
+    >
       <View style={styles.row}>
         {isDay ? <Sun /> : <Moon />}
         <MyText>{greeting + ", IT'S CURRENTLY"}</MyText>
       </View>
 
-      <View style={[styles.row, {alignItems: "flex-end",}]}>
-        <MyTextBold style={{fontSize: 80, fontWeight: 700}}>{hours + ":" + minutes}</MyTextBold>
+      <View style={[styles.row, { alignItems: "flex-end" }]}>
+        <MyTextBold style={{ fontSize: 80, fontWeight: 700 }}>
+          {hours + ":" + minutes}
+        </MyTextBold>
 
         <View style={styles.column}>
           <MyText>{isAM ? "AM" : "PM"}</MyText>
@@ -90,32 +96,63 @@ const BottomDisplay = ({ time, location, isDay, greeting }) => {
       </View>
 
       <View style={styles.row}>
-        <MyText>{"In " + locationData.city + ", " + locationData.region}</MyText>
+        <MyText>
+          {"In " + locationData.city + ", " + locationData.region}
+        </MyText>
       </View>
 
       <View style={styles.row}>
-      <Pressable style={styles.pressable} onPress={handleTabPress}>
-        <MyText style={styles.text}>{showTab ? "LESS" : "MORE"}</MyText>
-        {showTab ? <ArrowDown/> : <ArrowUp/>}
-      </Pressable>
+        <Pressable style={styles.pressable} onPress={handleTabPress}>
+          <MyText style={styles.text}>{showTab ? "LESS" : "MORE"}</MyText>
+          {showTab ? <ArrowDown /> : <ArrowUp />}
+        </Pressable>
       </View>
 
-      <View style={[styles.slider, {backgroundColor: slideBackgroundColor}]}>
+      <View style={[styles.slider, { backgroundColor: slideBackgroundColor }]}>
         <View style={styles.sliderRow}>
-      <MyText style={[styles.slideText, {color: slideTextColor}]}>poggers</MyText>
-      <MyTextBold style={[styles.slideTextBold, {color: slideTextColor}]}>poggers</MyTextBold>
-      </View>
+          <MyText style={[styles.slideText, { color: slideTextColor }]}>
+            CURRENT TIMEZONE
+          </MyText>
+          <MyTextBold style={[styles.slideTextBold, { color: slideTextColor }]}>
+            {timeData.timezone}
+          </MyTextBold>
+        </View>
+        <View style={styles.sliderRow}>
+          <MyText style={[styles.slideText, { color: slideTextColor }]}>
+            DAY OF THE YEAR
+          </MyText>
+          <MyTextBold style={[styles.slideTextBold, { color: slideTextColor }]}>
+            {timeData.day_of_year}
+          </MyTextBold>
+        </View>
+        <View style={styles.sliderRow}>
+          <MyText style={[styles.slideText, { color: slideTextColor }]}>
+            DAY OF THE WEEK
+          </MyText>
+          <MyTextBold style={[styles.slideTextBold, { color: slideTextColor }]}>
+            {timeData.day_of_week}
+          </MyTextBold>
+        </View>
+        <View style={styles.sliderRow}>
+          <MyText style={[styles.slideText, { color: slideTextColor }]}>
+            WEEK NUMBER
+          </MyText>
+          <MyTextBold style={[styles.slideTextBold, { color: slideTextColor }]}>
+            {timeData.week_number}
+          </MyTextBold>
+        </View>
       </View>
     </Animated.View>
   );
 };
 
 const styles = StyleSheet.create({
-
   slideTextBold: {
+    fontSize: 20,
   },
 
   slideText: {
+    fontSize: 14,
   },
 
   sliderRow: {
@@ -126,7 +163,7 @@ const styles = StyleSheet.create({
 
   slider: {
     Width: "100%",
-    height: 600,
+    height: "100%",
     backgroundColor: "rgba(255,255,255,0.5)",
     padding: 20,
   },
@@ -137,7 +174,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginLeft: 10,
   },
-
 
   pressable: {
     flexDirection: "row",

@@ -1,7 +1,21 @@
-import {View, StyleSheet, Text} from "react-native";
+import {View, StyleSheet, Text, Animated, Pressable,} from "react-native";
+import React, { useState, useEffect, useRef } from "react";
 
 
-const BottomScreen = (time, location, isDay) => {
+const BottomDisplay = (time, location, isDay) => {
+  const [showTab, setShowTab] = useState(false);
+
+  const slideAnim = useRef(new Animated.Value(0)).current;
+
+  const handleTabPress = () => {
+    setShowTab(!showTab);
+    Animated.timing(slideAnim, {
+      toValue: showTab ? 0 : 1,
+      duration: 500,
+      useNativeDriver: true,
+    }).start();
+  };
+
         return (
             <View style={styles.bottomRow}>
             {time ? <Text style={styles.text}>time works</Text> : null}
@@ -34,7 +48,7 @@ const styles = StyleSheet.create({
 
     });
 
-export default BottomScreen;
+export default BottomDisplay;
 /*
 {time ? <Text style={styles.text}>time works</Text> : null}
       {location ? <Text style={styles.text}>location works</Text> : null}

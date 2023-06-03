@@ -12,9 +12,14 @@ import parseTime from "../util/ParseTime";
 import {MyText, MyTextBold} from "../util/MyText";
 
 //components
-import BottomScreen from "../components/BottomScreen";
+import BottomDisplay from "../components/BottomDisplay";
+import TopDisplay from "../components/TopDisplay";
+//svgs
 import ArrowUp from "../components/svgs/ArrowUp";
 import ArrowDown from "../components/svgs/ArrowDown";
+import Moon from "../components/svgs/Moon";
+import Sun from "../components/svgs/Sun";
+import Refresh from "../components/svgs/Refresh";
 
 const ClockScreen = () => {
   //api usestates
@@ -28,17 +33,6 @@ const ClockScreen = () => {
   const [greeting, setGreeting] = useState("");
 
 
-  const slideAnim = useRef(new Animated.Value(0)).current;
-
-  const handleTabPress = () => {
-    setShowTab(!showTab);
-    Animated.timing(slideAnim, {
-      toValue: showTab ? 0 : 1,
-      duration: 500,
-      useNativeDriver: true,
-    }).start();
-  };
-
   //api useeffects
   useEffect(() => {
     fetchCurrentTime(setTime);
@@ -48,6 +42,7 @@ const ClockScreen = () => {
   useEffect(() => {
     fetchCurrentLocation(time, setLocation);
     parseTime(time, setGreeting, setIsDay);
+    console.log("isDay: " + isDay)
   }, [time]);
 
   
@@ -64,14 +59,9 @@ const ClockScreen = () => {
         style={styles.img}
       >
       <View style={styles.imgCover}>
-      <View style={styles.topRow}>
-      {quote ? <MyTextBold>quote bussin</MyTextBold> : null}
-      <ArrowUp/>
-      <ArrowDown/>
-
-      </View>
+      <TopDisplay quote={quote}/>
       
-      <BottomScreen time={time} location={location} isDay={isDay} />
+      <BottomDisplay time={time} location={location} isDay={isDay} />
       </View>
       </ImageBackground>
       
@@ -80,6 +70,10 @@ const ClockScreen = () => {
 };
 
 const styles = StyleSheet.create({
+
+  moon: {
+    margin: 10,
+  },
 
   imgCover: {
     flex: 1,
